@@ -1,22 +1,22 @@
-FROM alpine
+FROM alpine:3.13
 
 LABEL com.pi2k Poliza Informatica 2000 MDS SL
 LABEL maintainer Ruben Castro <rcastro@polizainformatica.com>
-LABEL version v1.0.0
-LABEL description Docker git
-
-COPY  [ ".", "/rancheros-git/" ]
+LABEL version v1.0.1
+LABEL description git in docker
 
 RUN apk add --no-cache git less openssh sudo ca-certificates && \
-    chmod +x /rancheros-git/entrypoint.sh && \
-    addgroup -g 1100 rancher && \
-    adduser -h /home/rancher -s /bin/sh -G rancher -u 1100 -D rancher && \
+    addgroup rancher && \
+    adduser -h /home/rancher -s /bin/sh -G rancher -D rancher && \
     echo "rancher ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/rancheros-git
 
-VOLUME [ "/git", "/usr/local/share/ca-certificates" ]
+WORKDIR /app
+COPY  [ "./entrypoint.sh", "./" ]
+
+VOLUME [ "/git" ]
 WORKDIR /git
 
 USER rancher
 
-ENTRYPOINT [ "/rancheros-git/entrypoint.sh" ]
+ENTRYPOINT [ "/app/entrypoint.sh" ]
 CMD [ "--help" ]

@@ -5,7 +5,7 @@ A tool for run git using Docker in Rancheros
 ## Supported tags and Dockerfile links
 
 -	[`latest` (*Dockerfile*)](https://github.com/rcastropolizainformatica/rancheros-git/blob/main/Dockerfile)
--	[`v1.0.0` (*Dockerfile*)](https://github.com/rcastropolizainformatica/rancheros-git/blob/v1.0.0/Dockerfile)
+-	[`v1.0.1` (*Dockerfile*)](https://github.com/rcastropolizainformatica/rancheros-git/blob/v1.0.1/Dockerfile)
 
 ## Volumes
 
